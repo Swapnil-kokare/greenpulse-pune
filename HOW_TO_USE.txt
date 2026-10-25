@@ -1,6 +1,18 @@
 GREENPULSE PUNE — QUICK USE (WINDOWS POWERSHELL)
 
-1. Open PowerShell in the extracted greenpulse_pune_demo folder.
+PREREQUISITES:
+- Windows 10/11 and PowerShell.
+- Python 3.10 or 3.11 recommended, with pip.
+- MySQL is required for database-backed overview values; it is not required
+  merely to start the dashboard.
+- Docker Desktop and Java/Spark are optional, and are only needed for the
+  Kafka/Spark pipeline.
+
+1. Clone the GitHub repository, or open PowerShell in the existing project folder:
+
+   git clone https://github.com/Swapnil-kokare/greenpulse-pune.git
+   Set-Location .\greenpulse-pune
+
 2. Create and activate the environment, then install the dashboard packages:
 
    py -m venv .venv

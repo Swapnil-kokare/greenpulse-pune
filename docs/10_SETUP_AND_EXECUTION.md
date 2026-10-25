@@ -4,17 +4,28 @@ These instructions target Windows PowerShell and this repository layout. Package
 
 ## Prerequisites
 
-- Python and pip; the existing README recommends Python 3.10 or 3.11, but no `pyproject.toml` or lockfile pins a supported interpreter.
-- MySQL server and the existing `greenpulse_pune` database/base summary table for database-backed pages.
-- Optional Docker Desktop for the included Kafka container.
-- Optional Java and a Spark installation compatible with the pinned PySpark version and Kafka connector.
+- **Dashboard only:** Windows 10/11 with PowerShell, Python and pip (Python 3.10 or 3.11 is recommended; no lockfile pins the interpreter), and permission to install dependencies. MySQL is not required to start Streamlit, but the database-backed panels need the existing `greenpulse_pune` database and `zone_environment_summary` table. Without MySQL, those panels should report unavailable data.
+- **Open-Meteo estimates:** network access is optional and is needed only for the external provider estimates.
+- **Synthetic ML demo:** the bundled CSV and base Python requirements; it does not require MySQL, Kafka, or Spark.
+- **Real-data ML:** MySQL credentials, the additive ML schema, and enough reviewed non-demonstration observations in `environment_observations`.
+- **Kafka replay:** Docker Desktop (or a reachable Kafka broker) and packages from `requirements-streaming.txt`.
+- **Spark batch/streaming:** Java and a Spark/PySpark and Kafka connector combination compatible with the local Scala/Spark build. Connector compatibility requires local verification.
+- **Repository checkout:** Git, if cloning from GitHub.
 
 The dependencies inspected in the active project environment were Streamlit 1.66.1, Pandas 2.3.3, NumPy 2.5.4, Plotly 6.9.0, PyDeck 0.9.3, scikit-learn 1.9.1, `kafka-python` 2.3.2, and PySpark 4.2.0. These are observed environment versions, not a lockfile.
 
 ## Create the environment and start the dashboard
 
+To clone the published project, open PowerShell and run:
+
 ```powershell
-cd "C:\path\to\greenpulse_pune_demo"
+git clone https://github.com/Swapnil-kokare/greenpulse-pune.git
+Set-Location .\greenpulse-pune
+```
+
+If the project is already on disk, change to its root folder instead. Then create the virtual environment, install the dashboard dependencies, and start Streamlit:
+
+```powershell
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
@@ -22,7 +33,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The browser normally opens at `http://localhost:8501`. If activation is blocked for the current shell, use:
+Open `http://localhost:8501` in a browser if it does not open automatically. The dashboard can launch without MySQL, but summary-based readings require valid database configuration. If PowerShell blocks environment activation, allow it for this terminal only:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass

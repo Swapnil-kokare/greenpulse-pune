@@ -12,7 +12,8 @@ GreenPulse Pune is a local Streamlit prototype for exploring land-surface temper
 - [Implemented scope and status](#implemented-scope-and-status)
 - [Results and outputs](#results-and-outputs)
 - [Technology stack](#technology-stack)
-- [Quick start](#quick-start-windows-powershell)
+- [Prerequisites to run locally](#prerequisites-to-run-locally)
+- [Run the project locally](#run-the-project-locally-windows-powershell)
 - [Optional Kafka and Spark replay](#optional-kafka-and-spark-replay)
 - [ML demo and real-data workflow](#machine-learning)
 - [Tests](#tests)
@@ -127,12 +128,31 @@ greenpulse_pune_demo/
 
 The diagram excludes virtual environments, local credentials, caches, and generated output files. `outputs/` is runtime state; its saved demo reports are not source datasets.
 
-## Quick start (Windows PowerShell)
+## Prerequisites to run locally
 
-Open PowerShell in the repository directory:
+### Dashboard only
+
+- Windows 10/11 with PowerShell.
+- Python 3.10 or 3.11 recommended, plus `pip`. The project does not currently pin a Python version in a lockfile.
+- Internet access is optional for the dashboard itself, but needed for the Open-Meteo provider estimates.
+- MySQL is optional for starting the Streamlit UI, but required to populate database-backed overview and status metrics. Configure access to the existing `greenpulse_pune` database and its `zone_environment_summary` table. Without a working database connection, the app should show an unavailable/error state rather than real KPI values.
+
+### Optional pipeline and ML features
+
+- The synthetic ML demo uses the bundled CSV and needs only the Python dependencies in `requirements.txt`; MySQL, Kafka, and Spark are not required:
+  `python -m ml.train_model --demo` followed by `python -m ml.predict --demo`.
+- Real-data ML requires MySQL credentials, the additive database migration, and enough reviewed non-demo records in `environment_observations`.
+- Kafka replay requires Docker Desktop (or another Kafka broker) and `requirements-streaming.txt`.
+- Spark batch/streaming requires Java and a Spark/PySpark installation compatible with the Kafka connector. Connector compatibility depends on the installed Spark/Scala build; see [Kafka and Spark streaming](docs/05_KAFKA_SPARK_STREAMING.md).
+- Git is needed only to clone or update the repository.
+
+## Run the project locally (Windows PowerShell)
+
+Open PowerShell and clone the GitHub repository:
 
 ```powershell
-cd "C:\path\to\greenpulse_pune_demo"
+git clone https://github.com/Swapnil-kokare/greenpulse-pune.git
+Set-Location .\greenpulse-pune
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
@@ -140,7 +160,9 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Open `http://localhost:8501`. If PowerShell blocks virtual-environment activation, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` in that terminal, then activate again. Do not paste the PowerShell prompt, JSON report, or tool output as commands; run only the command lines.
+When Streamlit starts, open `http://localhost:8501` in your browser. To run an already-cloned project, skip `git clone` and change directory to the local project folder before creating/activating the environment.
+
+If PowerShell blocks virtual-environment activation, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` in that terminal, then activate again. Do not paste the PowerShell prompt, JSON report, or tool output as commands; run only the command lines.
 
 ### MySQL configuration
 
