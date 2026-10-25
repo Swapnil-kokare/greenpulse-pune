@@ -114,7 +114,7 @@ greenpulse_pune_demo/
 ├── docs/
 │   ├── diagrams/                   # Editable Mermaid sources
 │   ├── figures/                    # Report figures generated from demo data
-│   └── screenshots/                # Empty until genuine app screenshots added
+│   └── screenshots/                # Genuine captures of the running dashboard
 ├── requirements.txt
 ├── requirements-streaming.txt
 ├── docker-compose.yml
@@ -234,7 +234,21 @@ The repository contains eight ML pipeline unit tests; all eight passed when run 
 
 ## Screenshots
 
-No report-ready screenshots are currently committed. The available integrated browser returned incomplete/blank captures, so no screenshot is presented as evidence. See [the screenshot capture instructions](docs/screenshots/README.md) and [dashboard guide](docs/09_DASHBOARD_AND_USER_WORKFLOW.md) to capture the actual running pages manually. Do not replace these with mockups.
+These are screenshots of the locally running application, not mockups. Environmental values in the dashboard are explicitly synthetic; the air-quality page shows provider estimates for one approximate grid point, and the electricity page shows a simulated index.
+
+![GreenPulse Pune overview with the synthetic-demo disclosure, latest-batch metrics, map, and zone ranking](docs/screenshots/01_pune_overview.png)
+
+*Pune overview. The displayed database summary is a historical synthetic replay; approximate map markers are not verified ward boundaries.*
+
+![Heat-hotspot review map with configurable threshold bands](docs/screenshots/02_heat_hotspots.png)
+
+*Heat-hotspot page. The threshold bands are exploratory review categories, not official warnings.*
+
+![Air-quality page showing provider estimates](docs/screenshots/03_air_quality.png)
+
+*Air-quality page. Values are provider/model estimates for one approximate Pune grid point, not ward-level measurements.*
+
+See the [complete screenshot gallery and capture notes](docs/screenshots/README.md) for electricity, Zone Explorer, ML, and pipeline-status pages.
 
 ## Technical documentation
 

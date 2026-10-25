@@ -35,6 +35,38 @@ The MySQL summary does not contain coordinates. The app joins CSV coordinates by
 
 ## Screenshots
 
-No screenshot has been accepted into the report because the available browser capture attempt produced incomplete captures. The project must not present mockups as screenshots. Follow [the manual capture checklist](screenshots/README.md) to capture the actual visible app and store images under `docs/screenshots/` before inserting them in the report.
+The following images were captured from the running local Streamlit app. They document the UI state at capture time; live provider estimates and timestamps can change.
 
-When captured, the report should include the overview, heat map, AQ estimate state, simulated electricity state, Zone Explorer, ML page, and data status. For the result evidence and interpretation structure, see [chapter 14](14_RESULTS_AND_FINDINGS.md).
+![Pune overview](screenshots/01_pune_overview.png)
+
+**Figure 9.2. Pune overview.** Latest-batch summary, approximate zone map, and ranked zones. The orange badge identifies the synthetic demonstration values.
+
+![Heat hotspots](screenshots/02_heat_hotspots.png)
+
+**Figure 9.3. Heat-hotspot review.** Map categories and review threshold are exploratory, not official warnings.
+
+![Air quality](screenshots/03_air_quality.png)
+
+**Figure 9.4. Air-quality estimates.** Provider/model values for one approximate grid point, not ward-level measurements.
+
+![Electricity hotspots](screenshots/04_electricity_hotspots.png)
+
+**Figure 9.5. Electricity demonstration.** The index is simulated; no electricity-meter or utility-load dataset is connected.
+
+![Zone Explorer](screenshots/05_zone_explorer.png)
+
+**Figure 9.6. Zone Explorer.** Search and filters over the latest summary batch; this is not a historical time-series view.
+
+![ML data-readiness page](screenshots/06_ml_predictions.png)
+
+**Figure 9.7. ML data readiness.** The current summary has rows, but eligible non-demo history is absent.
+
+![ML synthetic-demo evidence](screenshots/06_ml_predictions_outputs.png)
+
+**Figure 9.8. ML synthetic-demo evidence.** The model report is labelled demo-only; the page also indicates that prediction/recommendation rows are not saved in MySQL.
+
+![Data and pipeline status](screenshots/07_data_pipeline_status.png)
+
+**Figure 9.9. Data and pipeline status.** The page distinguishes database connectivity and Kafka TCP reachability from Spark process health, which is not monitored.
+
+See the [screenshot gallery and capture notes](screenshots/README.md). For the result evidence and interpretation structure, see [chapter 14](14_RESULTS_AND_FINDINGS.md).

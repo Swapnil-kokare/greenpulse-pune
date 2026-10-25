@@ -108,7 +108,17 @@ The project has insufficient real historical data for model evaluation, only app
 
 ## 7. Website screenshot status
 
-**No valid website screenshots were captured for this report.** The local app was reachable, but available browser screenshot automation produced incomplete/blank image files, which were not retained as evidence. The application pages and their data sources are documented in [chapter 09](09_DASHBOARD_AND_USER_WORKFLOW.md). Capture the real local app using [the screenshot checklist](screenshots/README.md), then add only genuine images to this chapter and the README. Required manual captures include overview, heat, air-quality availability state, electricity simulation state, Zone Explorer, ML outputs, and data/pipeline status.
+The figures below are genuine captures of the running local application. They illustrate the visible UI and its disclosures; they are not independent evidence that the data are measured or that the streaming services are currently running.
+
+![Captured Pune overview](screenshots/01_pune_overview.png)
+
+**Figure 14.2. Captured overview.** The latest database summary shown is from the synthetic demonstration replay. Its observation date is distinct from the dashboard and processing timestamps.
+
+![Captured ML demo evidence](screenshots/06_ml_predictions_outputs.png)
+
+**Figure 14.3. Captured ML demo page.** The evaluation metrics are synthetic-only and do not demonstrate forecast performance on real Pune observations. The page also shows that prediction and recommendation rows are not currently persisted in MySQL.
+
+See [chapter 09](09_DASHBOARD_AND_USER_WORKFLOW.md) for the full screenshot gallery and [the screenshot notes](screenshots/README.md) for the scope and limitations of each capture.
 
 ## Conclusion
 

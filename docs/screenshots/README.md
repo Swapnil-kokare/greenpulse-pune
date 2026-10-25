@@ -1,29 +1,25 @@
-# Website screenshot capture checklist
+# Dashboard screenshots
 
-No valid screenshots are currently stored here. The integrated screenshot attempts during documentation work produced incomplete/blank images, so those files were removed instead of being shown as website evidence.
+These are genuine screenshots captured from the locally running GreenPulse Pune Streamlit app. They show the application UI, not mockups or standalone report charts. The displayed values can change with the database, provider responses, and dashboard refresh time.
 
-## Capture genuine screenshots
+## Gallery
 
-1. Start GreenPulse Pune from the repository root:
+1. [Pune overview](01_pune_overview.png) — latest-batch metrics, approximate zone map, and ranking. The visible database values are from the synthetic demonstration replay.
+2. [Heat hotspots](02_heat_hotspots.png) — exploratory review threshold and map bands; not an official warning.
+3. [Air quality](03_air_quality.png) — Open-Meteo provider/model estimates at one approximate Pune grid point, not ward-level monitoring-station measurements.
+4. [Electricity hotspots](04_electricity_hotspots.png) — simulated illustrative index; no utility-meter or feeder-load data are connected.
+5. [Zone Explorer](05_zone_explorer.png) — searchable latest-batch summary, not historical zone trends.
+6. [ML predictions and data readiness](06_ml_predictions.png) — current summary and eligible-history status.
+7. [ML synthetic-demo evidence](06_ml_predictions_outputs.png) — demo-only model metrics and the current absence of saved prediction/recommendation rows in MySQL.
+8. [Data and pipeline status](07_data_pipeline_status.png) — database and broker indicators; Spark process health is explicitly not monitored.
 
-   ```powershell
-   .\.venv\Scripts\Activate.ps1
-   streamlit run app.py
-   ```
+## Capture notes
 
-2. Open `http://localhost:8501` in Microsoft Edge or Chrome at a desktop size (for example, 1440 × 1000). Use 100% browser zoom. Ensure the MySQL state and synthetic-data badge are visible where relevant.
-3. Use the actual Streamlit sidebar to open each screen. Scroll to the relevant section before capturing. Do not use an AI-generated mockup or a locally generated data chart as a website screenshot.
-4. Save captures with these names when the corresponding screen exists:
+- The global dashboard badge identifies the historical dataset as synthetic demo values. Synthetic observations are not measured Pune conditions.
+- CSV coordinates are approximate points, not verified ward boundaries.
+- The air-quality values are provider/model estimates and may change or be unavailable on a later capture.
+- The electricity index is simulated, not actual consumption or grid status.
+- The ML metrics are based on the synthetic dataset; they do not establish real-world forecast skill.
+- Database contents and service checks are a snapshot. A successful MySQL connection or Kafka TCP check does not prove current Spark or end-to-end pipeline execution.
 
-   - `01_pune_overview.png`
-   - `02_heat_hotspots.png`
-   - `03_air_quality.png`
-   - `04_electricity_hotspots.png`
-   - `05_zone_explorer.png`
-   - `06_ml_predictions.png`
-   - `07_data_pipeline_status.png`
-
-5. In Windows, `Win+Shift+S` can capture the visible app area. Save the PNG files into this directory. Prefer hiding browser chrome with full-screen mode and avoid capturing credentials or configuration.
-6. Confirm each image visibly matches its page and contains no secrets. Then embed only selected screenshots in the root README, this directory's documentation, and [Results and Findings](../14_RESULTS_AND_FINDINGS.md), with captions that identify synthetic, simulated, or provider-estimated values.
-
-Do not label a screenshot as an Air Quality or ML results page unless that actual page is open in the running application. The bundled dashboard can display synthetic demo values; the screenshot caption must say so.
+To refresh these images, run the app locally, open the relevant sidebar page, and capture the visible UI at a desktop viewport. Keep the synthetic/provider/simulation disclosures visible where possible, avoid exposing credentials, and update the captions and report references whenever a screenshot is replaced.
