@@ -1,0 +1,21 @@
+sequenceDiagram
+    autonumber
+    participant CSV as CSV file
+    participant Producer as Python producer
+    participant Kafka as Kafka broker/topic
+    participant Spark as Spark Structured Streaming
+    participant MySQL as MySQL
+    Producer->>CSV: Read each row
+    CSV-->>Producer: Synthetic row by default
+    Producer->>Kafka: Publish JSON to topic
+    Kafka-->>Spark: Event from earliest offset
+    Spark->>Spark: Parse schema; filter required values
+    Spark->>Spark: Aggregate by zone in micro-batch
+    Spark->>MySQL: Upsert batch and zone summary
+    opt Observation history migration exists
+        Spark->>Spark: Group by zone, date, and source
+        Spark->>MySQL: Upsert zone/date history
+    end
+    MySQL-->>Spark: Commit or error
+    Note over Producer,Spark: A CSV replay is not a live satellite or sensor feed.
+    Note over MySQL: A stored batch does not prove the processes are currently running.

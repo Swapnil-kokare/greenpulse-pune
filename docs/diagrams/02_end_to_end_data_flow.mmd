@@ -1,0 +1,20 @@
+flowchart TD
+    A["CSV row<br/>zone, date, LST, NDVI, source"] --> B["Producer casts numeric fields"]
+    B --> C["JSON event published to Kafka"]
+    C --> D["Spark reads from earliest offsets"]
+    D --> E["Parse schema; cast LST and NDVI"]
+    E --> F{"zone ID, LST, NDVI present?"}
+    F -- "No" --> G["Discard incomplete event"]
+    F -- "Yes" --> H["Group by zone"]
+    H --> I["Count, mean LST, mean NDVI,<br/>latest date"]
+    I --> J["foreachBatch upsert"]
+    J --> K["MySQL latest summary"]
+    E --> L{"History table exists?"}
+    L -- "Yes" --> M["Group by zone, date, source"]
+    M --> N["Weighted upsert to history table"]
+    L -- "No" --> O["Log disabled; summary sink continues"]
+    K --> P["Streamlit reads maximum batch"]
+    N --> Q["Eligible-history ML workflow"]
+    Q --> R["Prediction and evidence-linked suggestions"]
+    R --> P
+    S["Open-Meteo point estimate"] --> P

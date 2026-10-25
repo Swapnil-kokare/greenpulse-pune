@@ -1,0 +1,23 @@
+flowchart TD
+    Open["Open GreenPulse Pune"] --> Overview["Pune overview"]
+    Overview --> Source["Read latest MySQL summary<br/>and CSV map reference"]
+    Source --> Display["Show KPIs, approximate map,<br/>ranking, Zone Explorer"]
+    Display --> Select{"Choose sidebar page"}
+    Select --> Heat["Heat hotspots<br/>exploratory threshold"]
+    Select --> AQ["Air quality<br/>provider estimate if API succeeds"]
+    Select --> Electricity["Electricity hotspots<br/>simulated index"]
+    Select --> ML["ML predictions & recommendations"]
+    Select --> Status["Data & pipeline status"]
+    ML --> MLMode{"Available data/artifacts"}
+    MLMode -- "Demo artifacts" --> Demo["Show synthetic-only charts,<br/>predictions, recommendations"]
+    MLMode -- "Real eligible history" --> Real["Show real model status/results"]
+    MLMode -- "Not ready" --> Empty["Show data readiness/empty state"]
+    Status --> Health["Report database and timestamps;<br/>do not imply Spark health"]
+    Heat --> Refresh["Manual or timed dashboard refresh"]
+    AQ --> Refresh
+    Electricity --> Refresh
+    Demo --> Refresh
+    Real --> Refresh
+    Empty --> Refresh
+    Health --> Refresh
+    Refresh --> Overview

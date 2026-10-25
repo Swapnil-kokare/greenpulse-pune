@@ -1,0 +1,64 @@
+erDiagram
+    ZONE_ENVIRONMENT_SUMMARY {
+        BIGINT id PK
+        BIGINT batch_id
+        VARCHAR zone_id
+        VARCHAR zone_name
+        INT records_received
+        DOUBLE mean_lst_c
+        DOUBLE mean_ndvi
+        DATE latest_observation_date
+        TIMESTAMP processed_at
+    }
+    ENVIRONMENT_OBSERVATIONS {
+        BIGINT observation_id PK
+        VARCHAR zone_id
+        VARCHAR zone_name
+        DATE observation_date
+        DOUBLE lst_celsius
+        DOUBLE ndvi
+        DOUBLE ndbi
+        DOUBLE latitude
+        DOUBLE longitude
+        BOOLEAN coordinates_verified
+        VARCHAR data_source
+        BIGINT records_received
+        BIGINT last_batch_id
+        TIMESTAMP processed_at
+    }
+    ML_PREDICTIONS {
+        CHAR prediction_id PK
+        VARCHAR zone_id
+        VARCHAR zone_name
+        DATE input_observation_date
+        DATE target_observation_date
+        SMALLINT forecast_horizon_days
+        DOUBLE predicted_lst_c
+        DOUBLE predicted_lst_lower_c
+        DOUBLE predicted_lst_upper_c
+        VARCHAR model_version
+        VARCHAR data_source_status
+        DOUBLE latitude
+        DOUBLE longitude
+        BOOLEAN coordinates_verified
+        TIMESTAMP created_at
+    }
+    ENVIRONMENTAL_RECOMMENDATIONS {
+        CHAR recommendation_id PK
+        VARCHAR zone_id
+        VARCHAR zone_name
+        VARCHAR environmental_issue
+        VARCHAR issue_type
+        JSON supporting_evidence
+        TEXT recommended_intervention
+        TEXT reason
+        VARCHAR priority
+        DOUBLE confidence
+        TIMESTAMP recommendation_timestamp
+        TEXT follow_up_measurement
+        CHAR related_prediction_id FK
+        CHAR deduplication_key UK
+        VARCHAR source_status
+    }
+    ML_PREDICTIONS ||--o{ ENVIRONMENTAL_RECOMMENDATIONS : "optional related prediction"
+    %% Composite unique indexes: summary(batch_id, zone_id); observations(zone_id, observation_date, data_source); predictions(zone_id, input_observation_date, target_observation_date, model_version). Recommendations(deduplication_key) is unique.

@@ -1,0 +1,51 @@
+GREENPULSE PUNE — QUICK USE (WINDOWS POWERSHELL)
+
+1. Open PowerShell in the extracted greenpulse_pune_demo folder.
+2. Create and activate the environment, then install the dashboard packages:
+
+   py -m venv .venv
+   .\.venv\Scripts\Activate.ps1
+   python -m pip install --upgrade pip
+   pip install -r requirements.txt
+
+3. Start the dashboard:
+
+   streamlit run app.py
+
+4. Open http://localhost:8501 if a browser does not open automatically.
+
+Optional synthetic-only ML demo:
+
+   python -m ml.train_model --demo
+   python -m ml.predict --demo
+
+Optional legacy exploratory analysis (synthetic data; random split, not a future-date evaluation):
+
+   python ml_analysis.py
+
+Optional Spark batch demonstration:
+
+   spark-submit spark_batch.py
+
+Optional Kafka and Spark Structured Streaming:
+
+   docker compose up -d kafka
+   pip install -r requirements-streaming.txt
+   python kafka_producer.py
+
+   In a separate terminal, after configuring MySQL credentials and matching the
+   Spark/Kafka connector to the installed Spark/Scala version:
+
+   spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.13:4.2.0 spark_streaming.py
+
+The connector command requires local compatibility verification. Kafka/Spark execution is optional and is not started by Streamlit.
+
+IMPORTANT DATA NOTE:
+The bundled CSV is labelled SYNTHETIC_DEMO_NOT_REAL. Its values and approximate
+zone points are not measured Pune observations or verified ward boundaries.
+Open-Meteo responses are provider/model estimates for one approximate grid point
+when available. Electricity indicators are simulated. Do not use demo outputs
+as evidence of environmental impact or official warnings.
+
+See README.md for database credentials, migrations, tested unit-test commands,
+data provenance, page descriptions, results, references, and limitations.

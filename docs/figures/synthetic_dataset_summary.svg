@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Arial,sans-serif;fill:#162738}.title{font-size:26px;font-weight:bold}.subtitle{font-size:15px;fill:#9c392f}.panel{font-size:20px;font-weight:bold}.label{font-size:12px}.axis{stroke:#9aa8b2;stroke-width:1}.grid{stroke:#dce3e8;stroke-width:1}</style>
+<text x="55" y="48" class="title">GreenPulse Pune — synthetic demonstration dataset</text>
+<text x="55" y="76" class="subtitle">SYNTHETIC_DEMO_NOT_REAL · illustrative values only · not measured Pune observations</text>
+<text x="75" y="123" class="panel">Mean LST by illustrative zone (°C)</text>
+<line x1="220.0" y1="149" x2="220.0" y2="697" class="grid"/>
+<text x="220.0" y="719" text-anchor="middle" class="label">30</text>
+<line x1="310.0" y1="149" x2="310.0" y2="697" class="grid"/>
+<text x="310.0" y="719" text-anchor="middle" class="label">33</text>
+<line x1="400.0" y1="149" x2="400.0" y2="697" class="grid"/>
+<text x="400.0" y="719" text-anchor="middle" class="label">36</text>
+<line x1="490.0" y1="149" x2="490.0" y2="697" class="grid"/>
+<text x="490.0" y="719" text-anchor="middle" class="label">39</text>
+<line x1="580.0" y1="149" x2="580.0" y2="697" class="grid"/>
+<text x="580.0" y="719" text-anchor="middle" class="label">42</text>
+<line x1="670.0" y1="149" x2="670.0" y2="697" class="grid"/>
+<text x="670.0" y="719" text-anchor="middle" class="label">45</text>
+<text x="210" y="174" text-anchor="end" class="label">Pashan</text>
+<rect x="220" y="157" width="170.4" height="19" rx="3" fill="#2bbf9f"/>
+<text x="397.4" y="172" class="label">35.68</text>
+<text x="210" y="204" text-anchor="end" class="label">Kothrud</text>
+<rect x="220" y="187" width="172.5" height="19" rx="3" fill="#2bbf9f"/>
+<text x="399.5" y="202" class="label">35.75</text>
+<text x="210" y="234" text-anchor="end" class="label">Baner</text>
+<rect x="220" y="217" width="187.2" height="19" rx="3" fill="#2bbf9f"/>
+<text x="414.2" y="232" class="label">36.24</text>
+<text x="210" y="264" text-anchor="end" class="label">Aundh</text>
+<rect x="220" y="247" width="197.9" height="19" rx="3" fill="#2bbf9f"/>
+<text x="424.9" y="262" class="label">36.60</text>
+<text x="210" y="294" text-anchor="end" class="label">Warje</text>
+<rect x="220" y="277" width="198.3" height="19" rx="3" fill="#2bbf9f"/>
+<text x="425.3" y="292" class="label">36.61</text>
+<text x="210" y="324" text-anchor="end" class="label">Shivajinagar</text>
+<rect x="220" y="307" width="198.5" height="19" rx="3" fill="#2bbf9f"/>
+<text x="425.5" y="322" class="label">36.62</text>
+<text x="210" y="354" text-anchor="end" class="label">Dhanori</text>
+<rect x="220" y="337" width="230.9" height="19" rx="3" fill="#2bbf9f"/>
+<text x="457.9" y="352" class="label">37.70</text>
+<text x="210" y="384" text-anchor="end" class="label">Bibwewadi</text>
+<rect x="220" y="367" width="239.8" height="19" rx="3" fill="#2bbf9f"/>
+<text x="466.8" y="382" class="label">37.99</text>
+<text x="210" y="414" text-anchor="end" class="label">Viman Nagar</text>
+<rect x="220" y="397" width="245.4" height="19" rx="3" fill="#2bbf9f"/>
+<text x="472.4" y="412" class="label">38.18</text>
+<text x="210" y="444" text-anchor="end" class="label">Wakad</text>
+<rect x="220" y="427" width="248.4" height="19" rx="3" fill="#2bbf9f"/>
+<text x="475.4" y="442" class="label">38.28</text>
+<text x="210" y="474" text-anchor="end" class="label">Yerawada</text>
+<rect x="220" y="457" width="267.3" height="19" rx="3" fill="#2bbf9f"/>
+<text x="494.3" y="472" class="label">38.91</text>
+<text x="210" y="504" text-anchor="end" class="label">Swargate</text>
+<rect x="220" y="487" width="268.4" height="19" rx="3" fill="#2bbf9f"/>
+<text x="495.4" y="502" class="label">38.95</text>
+<text x="210" y="534" text-anchor="end" class="label">Hinjawadi</text>
+<rect x="220" y="517" width="270.0" height="19" rx="3" fill="#2bbf9f"/>
+<text x="497.0" y="532" class="label">39.00</text>
+<text x="210" y="564" text-anchor="end" class="label">Kondhwa</text>
+<rect x="220" y="547" width="270.9" height="19" rx="3" fill="#2bbf9f"/>
+<text x="497.9" y="562" class="label">39.03</text>
+<text x="210" y="594" text-anchor="end" class="label">Pimpri</text>
+<rect x="220" y="577" width="276.1" height="19" rx="3" fill="#2bbf9f"/>
+<text x="503.1" y="592" class="label">39.20</text>
+<text x="210" y="624" text-anchor="end" class="label">Kharadi</text>
+<rect x="220" y="607" width="286.1" height="19" rx="3" fill="#2bbf9f"/>
+<text x="513.1" y="622" class="label">39.54</text>
+<text x="210" y="654" text-anchor="end" class="label">Camp</text>
+<rect x="220" y="637" width="300.6" height="19" rx="3" fill="#2bbf9f"/>
+<text x="527.6" y="652" class="label">40.02</text>
+<text x="210" y="684" text-anchor="end" class="label">Hadapsar</text>
+<rect x="220" y="667" width="301.0" height="19" rx="3" fill="#2bbf9f"/>
+<text x="528.0" y="682" class="label">40.03</text>
+<text x="445.0" y="744" text-anchor="middle" class="label">Mean LST (°C)</text>
+<text x="820" y="123" class="panel">Date-level mean LST (°C)</text>
+<line x1="875" y1="540.0" x2="1375" y2="540.0" class="grid"/>
+<text x="863" y="544.0" text-anchor="end" class="label">30</text>
+<line x1="875" y1="464.0" x2="1375" y2="464.0" class="grid"/>
+<text x="863" y="468.0" text-anchor="end" class="label">33</text>
+<line x1="875" y1="388.0" x2="1375" y2="388.0" class="grid"/>
+<text x="863" y="392.0" text-anchor="end" class="label">36</text>
+<line x1="875" y1="312.0" x2="1375" y2="312.0" class="grid"/>
+<text x="863" y="316.0" text-anchor="end" class="label">39</text>
+<line x1="875" y1="236.0" x2="1375" y2="236.0" class="grid"/>
+<text x="863" y="240.0" text-anchor="end" class="label">42</text>
+<line x1="875" y1="160.0" x2="1375" y2="160.0" class="grid"/>
+<text x="863" y="164.0" text-anchor="end" class="label">45</text>
+<circle cx="875.0" cy="326.7" r="5" fill="#e16a5b"/>
+<text x="875.0" y="562" text-anchor="middle" class="label">15 Mar</text>
+<circle cx="946.4" cy="306.8" r="5" fill="#e16a5b"/>
+<text x="946.4" y="562" text-anchor="middle" class="label">01 Apr</text>
+<circle cx="1017.9" cy="282.5" r="5" fill="#e16a5b"/>
+<text x="1017.9" y="562" text-anchor="middle" class="label">17 Apr</text>
+<circle cx="1089.3" cy="265.2" r="5" fill="#e16a5b"/>
+<text x="1089.3" y="562" text-anchor="middle" class="label">03 May</text>
+<circle cx="1160.7" cy="293.2" r="5" fill="#e16a5b"/>
+<text x="1160.7" y="562" text-anchor="middle" class="label">19 May</text>
+<circle cx="1232.1" cy="409.7" r="5" fill="#e16a5b"/>
+<text x="1232.1" y="562" text-anchor="middle" class="label">04 Jun</text>
+<circle cx="1303.6" cy="423.7" r="5" fill="#e16a5b"/>
+<text x="1303.6" y="562" text-anchor="middle" class="label">20 Jun</text>
+<circle cx="1375.0" cy="387.1" r="5" fill="#e16a5b"/>
+<text x="1375.0" y="562" text-anchor="middle" class="label">06 Jul</text>
+<polyline points="875.0,326.7 946.4,306.8 1017.9,282.5 1089.3,265.2 1160.7,293.2 1232.1,409.7 1303.6,423.7 1375.0,387.1" fill="none" stroke="#e16a5b" stroke-width="3"/>
+<text x="1125.0" y="594" text-anchor="middle" class="label">Observation date in 2025</text>
+<text x="827" y="350.0" transform="rotate(-90 827,350.0)" text-anchor="middle" class="label">Mean LST (°C)</text>
+<text x="55" y="865" class="label">Source: data/pune_demo_observations.csv · 144 rows · 18 zones · 8 dates (15 Mar–06 Jul 2025). No real-world inference.</text>
+</svg>

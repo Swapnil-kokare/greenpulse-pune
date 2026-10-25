@@ -1,0 +1,27 @@
+flowchart TD
+    Start["ML workflow request"] --> Mode{"Explicit mode"}
+    Mode -- "Real-data" --> DB["Read environment_observations"]
+    DB --> Validate["Validate fields, dates, source labels,<br/>duplicates, conflicting sources"]
+    Validate --> Eligible["Exclude demo, simulated,<br/>unknown, unverified rows"]
+    Eligible --> Ready{"Real-data minimums met?"}
+    Ready -- "No" --> Block["Write blocked/insufficient report;<br/>do not deploy a model"]
+    Ready -- "Yes" --> Features["Build per-zone lags and<br/>next-observation target"]
+    Mode -- "--demo" --> DemoCSV["Read bundled synthetic CSV"]
+    DemoCSV --> DemoFeatures["Build same feature shape;<br/>use demo-only minimums"]
+    Features --> Split["Chronological train / later-date holdout"]
+    DemoFeatures --> Split
+    Split --> Compare["Compare mean baseline and Random Forest"]
+    Compare --> Accept{"MAE improves >= 5%<br/>and RMSE is not worse?"}
+    Accept -- "Real accepted" --> Artifact["Save real model under artifacts/"]
+    Accept -- "Real rejected" --> Keep["Retain prior accepted model;<br/>write rejected report"]
+    Accept -- "Demo" --> DemoArtifact["Save demo model under demo_artifacts/"]
+    Artifact --> Inference["Build next-observation features"]
+    DemoArtifact --> DemoInference["Explicit demo inference"]
+    Inference --> Classify["Classify configured LST bands"]
+    DemoInference --> Classify
+    Classify --> Recommend["Generate evidence-linked heuristic suggestions"]
+    Recommend --> Store{"Output mode"}
+    Store -- "Real" --> MySQL["Persist ML outputs to MySQL"]
+    Store -- "Demo" --> Local["Write clearly labelled local JSON"]
+    MySQL --> UI["Dashboard ML page"]
+    Local --> UI

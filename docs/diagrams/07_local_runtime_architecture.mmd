@@ -1,0 +1,20 @@
+flowchart LR
+    subgraph Windows["Local Windows development machine"]
+        Browser["Browser<br/>localhost:8501"]
+        Streamlit["Python venv<br/>Streamlit app.py"]
+        Producer["Python venv<br/>kafka_producer.py"]
+        Spark["spark-submit<br/>Spark Structured Streaming"]
+        subgraph Docker["Docker Compose"]
+            Kafka["Apache Kafka<br/>localhost:9092"]
+        end
+        MySQL["MySQL server<br/>localhost:3306"]
+        Files["Project files<br/>data, ML code, artifacts"]
+    end
+    Browser <--> Streamlit
+    Streamlit --> MySQL
+    Streamlit --> Files
+    Producer --> Kafka
+    Kafka --> Spark
+    Spark --> MySQL
+    Spark --> Files
+    Streamlit -. "optional requests" .-> OpenMeteo["Open-Meteo APIs"]

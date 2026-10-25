@@ -1,0 +1,29 @@
+flowchart LR
+    subgraph Sources["Input sources"]
+        CSV["Bundled CSV<br/>synthetic by default"]
+        OM["Open-Meteo APIs<br/>optional provider estimates"]
+    end
+    subgraph Processing["Local ingestion and processing"]
+        Producer["Python CSV replay producer"]
+        Kafka["Kafka topic<br/>pune-environmental-observations"]
+        Spark["Spark Structured Streaming"]
+    end
+    subgraph Persistence["MySQL greenpulse_pune"]
+        Summary["zone_environment_summary"]
+        History["environment_observations<br/>optional history"]
+        Predictions["ml_predictions"]
+        Recommendations["environmental_recommendations"]
+    end
+    subgraph Application["Application"]
+        ML["ML training, inference,<br/>classification, recommendations"]
+        UI["Streamlit dashboard"]
+    end
+    CSV --> Producer --> Kafka --> Spark
+    Spark --> Summary
+    Spark -. "if migration is applied" .-> History
+    History --> ML
+    ML --> Predictions
+    ML --> Recommendations
+    Summary --> UI
+    ML --> UI
+    OM --> UI
