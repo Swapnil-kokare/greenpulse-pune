@@ -199,6 +199,14 @@ spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.13:4.2.0 spark_s
 
 The connector coordinate above follows the project's PySpark 4.2.0 dependency and must be checked against the installed Spark/Scala distribution if the package cannot be resolved. Topic: `pune-environmental-observations`; broker: `localhost:9092`. For a local topic setup command, migration notes, replay behavior, and current verification status, see [Kafka and Spark streaming](docs/05_KAFKA_SPARK_STREAMING.md). Stop producer/Spark with `Ctrl+C`; stop the Compose broker with `docker compose down`.
 
+For a continuously changing dashboard demonstration, keep Spark running and start a producer in another terminal:
+
+```powershell
+python kafka_producer.py --live-demo
+```
+
+This mode repeatedly replays the bundled rows with small deterministic changes to LST, NDVI, and NDBI, and labels them `SYNTHETIC_LIVE_DEMO_NOT_REAL`. It is simulated data, not a live sensor feed. Keep dashboard auto-refresh enabled; the default refresh interval is 15 seconds and the MySQL summary cache expires after 10 seconds. Stop the producer with `Ctrl+C`.
+
 ## Machine learning
 
 The older `python ml_analysis.py` script is a separate synthetic exploration using K-means and a randomly split Random Forest regression. It writes `outputs\zone_analysis.csv` and `outputs\model_metrics.json`; its random holdout metrics are not an out-of-time forecast evaluation. Prefer the explicit isolated demo mode below for the current ML dashboard workflow.

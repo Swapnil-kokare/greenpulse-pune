@@ -5,7 +5,12 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-import mysql.connector
+try:
+    import mysql.connector as mysql_connector
+except ModuleNotFoundError as error:
+    if error.name != "mysql":
+        raise
+    mysql_connector = None
 import pandas as pd
 import plotly.express as px
 import requests
@@ -55,6 +60,9 @@ ZONE_SUMMARY_COLUMNS = (
     "latest_observation_date",
     "batch_id",
     "processed_at",
+)
+DATABASE_ERRORS = (RuntimeError, ValueError) + (
+    (mysql_connector.Error,) if mysql_connector is not None else ()
 )
 
 st.markdown(
@@ -120,8 +128,14 @@ st.markdown(
 )
 
 
-@st.cache_data(ttl=60, show_spinner=False)
+@st.cache_data(ttl=10, show_spinner=False)
 def load_spark_data():
+    if mysql_connector is None:
+        raise RuntimeError(
+            "MySQL connector is not installed. Run "
+            "`python -m pip install -r requirements.txt` to enable database data."
+        )
+
     try:
         configured_secrets = st.secrets.get("mysql", {})
     except StreamlitSecretNotFoundError:
@@ -140,7 +154,7 @@ def load_spark_data():
             "[mysql] password to .streamlit/secrets.toml. See README.md."
         )
 
-    connection = mysql.connector.connect(
+    connection = mysql_connector.connect(
         host=os.getenv("MYSQL_HOST", configured_secrets.get("host", "127.0.0.1")),
         port=int(os.getenv("MYSQL_PORT", configured_secrets.get("port", "3306"))),
         user=os.getenv("MYSQL_USER", configured_secrets.get("user", "root")),
@@ -1333,7 +1347,7 @@ with st.sidebar:
     auto_refresh = st.toggle("Refresh dashboard automatically", value=True)
     refresh_seconds = st.selectbox(
         "Dashboard refresh interval",
-        [30, 60, 120, 300],
+        [10, 15, 30, 60, 120, 300],
         index=1,
         format_func=lambda seconds: f"{seconds} seconds",
         disabled=not auto_refresh,
@@ -1373,7 +1387,7 @@ with refresh_header:
 try:
     zones = load_spark_data()
     database_error = None
-except (mysql.connector.Error, RuntimeError, ValueError) as error:
+except DATABASE_ERRORS as error:
     zones = pd.DataFrame()
     database_error = str(error)
 

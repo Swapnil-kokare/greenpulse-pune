@@ -2,7 +2,7 @@
 
 ## Implemented workflow
 
-`kafka_producer.py` reads the CSV selected by `GREENPULSE_DATASET_PATH` (default: `data/pune_demo_observations.csv`) and sends one JSON event per row to topic `pune-environmental-observations`. The default pause is 0.25 seconds. The producer waits for delivery/flush and prints its sent count. This is a replay demonstration, not live ingestion.
+`kafka_producer.py` reads the CSV selected by `GREENPULSE_DATASET_PATH` (default: `data/pune_demo_observations.csv`) and sends one JSON event per row to topic `pune-environmental-observations`. The default pause is 0.25 seconds. The default run is a one-time replay. `python kafka_producer.py --live-demo` repeats the rows until Ctrl+C, changing LST/NDVI/NDBI slightly per cycle and using the current date. These events are explicitly marked `SYNTHETIC_LIVE_DEMO_NOT_REAL`; this is simulated data, not a live sensor feed.
 
 `spark_streaming.py` subscribes at `localhost:9092` from `startingOffsets=earliest`. It parses messages against the project schema, casts LST/NDVI to doubles, rejects missing zone IDs and null LST/NDVI, and aggregates by zone. The summary query uses `outputMode("complete")` and `foreachBatch`; each batch is committed with MySQL `executemany` and `ON DUPLICATE KEY UPDATE`. Its checkpoint is `outputs/checkpoints/kafka_stream`.
 
@@ -33,6 +33,8 @@ Start the producer in one terminal:
 ```powershell
 python kafka_producer.py
 ```
+
+To demonstrate changing values instead, start `python kafka_producer.py --live-demo` and leave it running while Spark and Streamlit are running. The dashboard reads MySQL with a 10-second cache and defaults to a 15-second auto-refresh interval. This makes new processed values visible shortly after Spark writes them; it does not make the underlying synthetic observations real.
 
 Start Spark in another terminal after configuring MySQL environment variables:
 
